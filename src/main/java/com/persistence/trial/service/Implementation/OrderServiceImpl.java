@@ -23,7 +23,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderItem> getAllOrder() {
         return orderRepository.findAll();
-
     }
 
     @Override
@@ -32,27 +31,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-
     @Override
     public OrderItem SaveOrderItem(OrderItem orderItem) {
         return orderRepository.save(orderItem);
     }
 
-   @Override
+    @Override
     public OrderItem UpdateOrderItem(Long id, OrderItem orderItemss) {
-
         Optional<OrderItem> orderItems = orderRepository.findById(id);
-
         if (orderItems.isPresent()) {
             OrderItem orderItem1 = orderItems.get();
-
-
-            orderItem1  .setProductQuantity(orderItemss.getProductQuantity());
+            orderItem1.setProductQuantity(orderItemss.getProductQuantity());
             orderItem1.setProductName(orderItemss.getProductName());
-
-
+            orderItem1.setBasePrice(orderItemss.getBasePrice());
             return orderRepository.save(orderItem1);
-
         }
         return null;
     }
@@ -60,7 +52,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean DeleteOrderItemById(Long id) {
         orderRepository.deleteById(id);
-
-        return false;
+        return true;
     }
 }

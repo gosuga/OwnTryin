@@ -42,11 +42,9 @@ public class OrderController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTheOrder(@PathVariable Long id) {
-
         if (!orderService.DeleteOrderItemById(id)) {
             throw new IllegalArgumentException("Invalid order id" + id);
         }
-
         orderService.DeleteOrderItemById(id);
         return ResponseEntity.accepted().build();
 
